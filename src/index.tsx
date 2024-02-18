@@ -3,14 +3,25 @@ import ReactDOM from 'react-dom/client'
 import Experience from './Experience.tsx'
 import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import About from './About.tsx'
 
 const router = createBrowserRouter([
   {
       path:"/",
       element: <Experience/>,
-      children: [{
+      children: [
+        {
           path: "about",
-          element: <div>hello</div>
+          element: <About/>
+        },
+        {
+          path: "home",
+          element: <div>home</div>
+        },
+        {
+          path: "notes",
+          element: <><div>notes</div>
+          <div>notes</div></>
         }
       ]
   },

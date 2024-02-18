@@ -7,6 +7,7 @@ import Triangle  from './Triangle.tsx'
 import Floater from "./Floater.tsx"
 import './index.css'
 import { shapeContext } from "./ShapeContext.tsx"
+import { selectedContext } from "./SelectedContext.tsx"
 
 const swirlRadius = 15
 
@@ -64,42 +65,46 @@ export default function Background(){
     const lightGroup = useRef(null)
 
     const shape = useContext(shapeContext)
+    const selected = useContext(selectedContext)
 
     useFrame(
         (state, delta) => {
             if (trianglesRef.current){
                 trianglesRef.current.rotation.y += delta/10
             }
-            //console.log(groupRef.current)
-            //console.log(state.pointer)
             const angle = state.camera.rotation.y
             const c = Math.cos(angle)
             const s = Math.sin(angle)
             const d = ((1/(1+2**(-state.pointer.x*8)))-0.5)/2
             
-            if (state.camera.position.z > 0){
-                groupRef.current.position.x = c * d
-                groupRef.current.position.z = -s * d
-            }
-            else{
-                groupRef.current.position.x = -c * d
-                groupRef.current.position.z = -s * d
-            }
-            groupRef.current.position.y = state.pointer.y/2
-
-            if (shape == 0){
-                if (groupRef.current.rotation.x > 0){
-                    groupRef.current.rotation.x = Math.max(0, groupRef.current.rotation.x - delta*3)
+            if (selected == 0){
+                if (state.camera.position.z > 0){
+                    groupRef.current.position.x = c * d
+                    groupRef.current.position.z = -s * d
                 }
                 else{
-                    groupRef.current.rotation.x = Math.min(0, groupRef.current.rotation.x + delta*3)
+                    groupRef.current.position.x = -c * d
+                    groupRef.current.position.z = -s * d
+                }
+                groupRef.current.position.y = state.pointer.y/2
+            }
+            else if (selected == 1){
+
+            }
+
+            if (selected == 0){
+                if (groupRef.current.rotation.x > 0){
+                    groupRef.current.rotation.x = Math.max(0, groupRef.current.rotation.x - delta*2)
+                }
+                else{
+                    groupRef.current.rotation.x = Math.min(0, groupRef.current.rotation.x + delta*2)
                 }
             }
-            else if (shape == 1){
-                groupRef.current.rotation.x = Math.max(-Math.PI/2, groupRef.current.rotation.x - delta*3)
+            else if (selected == 1){
+                groupRef.current.rotation.x = Math.max(-Math.PI/2, groupRef.current.rotation.x - delta*2)
             }
-            else if (shape == 2){
-                groupRef.current.rotation.x = Math.min(Math.PI/2, groupRef.current.rotation.x + delta*3)
+            else if (selected == 2){
+                groupRef.current.rotation.x = Math.min(Math.PI/2, groupRef.current.rotation.x + delta*2)
             }
             
 
@@ -147,7 +152,7 @@ export default function Background(){
         [sphere_vertices]
     )
     return <>
-        <Perf />
+        {/*<Perf />*/}
         <OrbitControls enablePan={false} enableZoom={false} maxPolarAngle={Math.PI*3/5} minPolarAngle={Math.PI*2/5} />
         <group ref={groupRef}>
             <group ref={trianglesRef}>

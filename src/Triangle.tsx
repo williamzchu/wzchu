@@ -3,6 +3,7 @@ import * as THREE from "three";
 import { useFrame, useThree } from "@react-three/fiber"
 import { computeMorphedAttributes } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { shapeContext } from "./ShapeContext";
+import { selectedContext } from "./SelectedContext";
 
 const maxDist = 0.08
 const minDist = -0.01
@@ -44,6 +45,7 @@ export default function Triangle({sphere_vertices, cube_vertices, torus_vertices
     const [prevShape, setPrevShape] = useState(0)
 
     const shape = useContext(shapeContext)
+    const selected = useContext(selectedContext)
     const prevShapeRef = useRef<number>(0)
 
     const geom = useRef<THREE.BufferGeometry>(null)
@@ -177,7 +179,7 @@ export default function Triangle({sphere_vertices, cube_vertices, torus_vertices
                 edge.current.morphTargetInfluences[0] = Math.min(Math.max(0, t0), 1)
                 edge.current.morphTargetInfluences[1] = Math.min(Math.max(0, t1), 1)
             }
-            if (hovered){
+            if (selected==0 && hovered){
                 const new_norm = calculateNormals({tri_vertices: computeMorphedAttributes(meshRef.current).morphedPositionAttribute.array})
                 setNormal(new THREE.Vector3(new_norm[0], new_norm[1], new_norm[2]))
                 edge.current.material.color = white
@@ -187,9 +189,7 @@ export default function Triangle({sphere_vertices, cube_vertices, torus_vertices
                 edge.current.material.color = black
                 meshRef.current.material.emissive = black
             }
-
-
-            if (hovered && tValue < maxDist){
+            if (selected == 0 && hovered && tValue < maxDist){
                 setTValue(Math.min(maxDist, tValue + delta * hoverSpeed))
             }
             else if (tValue > minDist){
