@@ -3,9 +3,7 @@ import Background from "./Background"
 import { useEffect, useRef, useState } from "react"
 import { shapeContext } from "./ShapeContext"
 import { selectedContext } from "./SelectedContext"
-import { createBrowserRouter, RouterProvider, Link, Outlet } from "react-router-dom"
-import { CSSTransition, SwitchTransition } from 'react-transition-group'
-import { button } from "leva"
+import { Link, useLocation } from "react-router-dom"
 import About from "./About"
 import Notes from "./Notes"
 
@@ -15,21 +13,12 @@ export default function Experience(){
     const [hoverTime, setHoverTime] = useState(0)
     const [repeater, setRepeater] = useState<NodeJS.Timeout>()
     const [selected, setSelected] = useState(0)
-    const [buttoned, setbuttoned] = useState(true)
     const [contentY, setContentY] = useState(0)
-    const [width, setWidth] = useState(0)
+    const location = useLocation()
     
     const navRef = useRef(null)
-    const contentRef = useRef(null)
     const aboutRef = useRef(null)
     const notesRef = useRef(null)
-    
-    if (navRef.current && aboutRef.current && notesRef.current){
-        const top = 0
-        const textHeight = selected == 1? aboutRef.current.clientHeight : notesRef.current.clientHeight
-        const bottom = -textHeight + window.innerHeight
-        document.onwheel = (event) => {setContentY(Math.min(top,Math.max(bottom, contentY - event.deltaY)))}
-    }
     
     function hover(shape: number){
         const t = performance.now()
@@ -40,17 +29,26 @@ export default function Experience(){
         }
     }
 
+    if (navRef.current && aboutRef.current && notesRef.current){
+        const top = 0
+        const textHeight = selected == 1? aboutRef.current.clientHeight : notesRef.current.clientHeight
+        const bottom = -textHeight + window.innerHeight
+        document.onwheel = (event) => {setContentY(Math.min(top,Math.max(bottom, contentY - event.deltaY)))}
+    }
+    
     useEffect(
         () => {
-            const p = window.location.pathname
-            if (p == "/about"){
+            if (location.pathname == "/about"){
                 setSelected(1)
             }
-            else if (p == "/notes"){
+            else if (location.pathname == "/notes"){
                 setSelected(2)
             }
-            return () => window.removeEventListener('resize', () => setWidth(window.innerWidth));
-        }, []
+            else {
+                setSelected(0)
+            }
+            console.log(location)
+        }, [location]
     )
 
     const navbar = (<>

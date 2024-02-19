@@ -2,6 +2,10 @@
     font-family: "Aquire";
     src: local("Aquire"), url(./assets/AquireLight-YzE0o.otf) format('opentype');
 }
+@font-face {
+    font-family: "Zekton";
+    src: local("Zekton"), url(./assets/zekton.otf) format('opentype');
+}
 
 html,
 body,
@@ -86,7 +90,7 @@ body,
     position: fixed;
     width: 52vw;
     color: white;
-    font-family: "Aquire";
+    font-family: "Zekton";
 
     transition: top 1s, left 1s;
     min-height: 90vh;
@@ -95,7 +99,7 @@ body,
 
 .content-container{
     padding: 10%;
-    font-size: 1vw;
+    font-size: large;
 }
 
 .leftblur{
