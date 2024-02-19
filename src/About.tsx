@@ -1,8 +1,8 @@
 export default function About(){
     return <>
         <h1>Welcome! </h1>
-        <p>This is not really a portfolio site, but rather one for interest.</p>
-        <p>What does that mean? Well, this site was put together mainly by my interests in computer graphics and visual computing (no not frontend and design, although there are some fun cases), and I found this wonderful wrapper for webGL called threeJS. So I decided to see what is possible with it. </p>
+        <p>This is not really a portfolio site, but rather one for interest as a prototype.</p>
+        <p>What does that mean? Well, this site was put together mainly by my interests in computer graphics and visual computing (no not because I'm a fan of frontend and design, although there are some fun cases) as a way to interactively put together some references for myself similar to a diary or blog, and I found this wonderful wrapper for webGL called threeJS. So I decided to see what is possible with it. </p>
         <p>We can see that anything is possible! As long as I can move triangles and vertices around to where I want it to be, anything is possible! We can do any animation and any model, as shown when you hover those big navigation buttons to the right...</p>
         <p>But that's easy enough, just represent 3D vertices and operations that control those vertices. Then you will need to develop some framework that lets you access those operations, then do some interface or canvas which is another nightmare in itself, the entire rasterization process or raytracing if you are feeling fancy or some raymarching for less unique shapes, can't forget about some way to render text, ah wait what if I want some interactible buttons, maybe some mouse input here, now what about lighting and shaders too, hmm maybe it would be cool if I can access a server with this, maybe its CUDA time for parallel operations, and the list goes on and on and on.</p>
         <p>In other words, for something light and basic, thank webapps and React.</p>
@@ -15,9 +15,10 @@ export default function About(){
         <img src="creamy2.png"></img>
         <p>Only it's without me as I am shy, and my dog is older than me because it is a plush.</p>
         <div style={{height:"3vh"}}></div>
-        <h1>Contact</h1>
+        <h1>Contacts</h1>
+        <a href="https://github.com/williamzchu" style={{color: "gray"}}>Github</a>
         <p>Email: williamzchu@gmail.com</p>
-        <p>If I don't reply after a few days, please follow up! Sometimes we forget emails are stacks where things are lost at the bottom, especially for me!</p>
+        <p>If there is no reply after two days, please follow up! Sometimes we forget emails are stacks where things are never popped, especially for me!</p>
 
     </>
 }

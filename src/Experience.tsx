@@ -14,6 +14,7 @@ export default function Experience(){
     const [repeater, setRepeater] = useState<NodeJS.Timeout>()
     const [selected, setSelected] = useState(0)
     const [contentY, setContentY] = useState(0)
+    const [triangle, setTriangle] = useState(null)
     const location = useLocation()
     
     const navRef = useRef(null)
