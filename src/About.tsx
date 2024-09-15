@@ -8,17 +8,17 @@ export default function About(){
         <p>In other words, for something light and basic, thank webapps and React.</p>
         <div style={{height:"2vh"}}></div>
         <p>Anyways, this "about" page should have at least a little about the person behind it. </p>
-        <p>I go by William, and I have been coding since elementary school! Or so I would love to say, but that's just a lie. I remember when I first touched a script in Roblox studio, and had zero understanding whatsoever, and led me to avoid code like the plague. Yet it left me with an impression, that everything I saw in my computer, someone made, and that I could make too. Games and software weren't just techologies that I could utilize, but almost like pieces of art that had logic behind them, logic that was practical to admire, yet abusable to use.</p>
+        <p>I go by Will. I have always liked code that is visual. I remember when I first touched a script in Roblox studio, and had zero understanding whatsoever, and led me to avoid code like the plague. Yet it left me with an impression, that everything I saw in my computer, someone made, and that I could make too. Games and software weren't just techologies that I could utilize, but almost like pieces of art that had logic behind them, logic that was practical to admire, yet abusable to use.</p>
         <p>So to end my rant and spiel, I am now a humble dev. Also with some additional expertise in visual computing, machine learning, and math. My interests lie in the intersections between data, visuals, and statistics, afterall: what is cooler than computing something you can use or see!</p>
         <div style={{height:"2vh"}}></div>
-        <p>If you read through this "cringe" about page with my sarcasm, congrats! Here is a picture of me and my 21 year old dog!</p>
+        <p>If you read through my sarcasm, congrats! Here is of my 21 year old dog!</p>
         <img src="creamy2.png"></img>
-        <p>Only it's without me as I am shy, and my dog is older than me because it is a plush.</p>
+        <p>Also, my dog is older than me because it is a plush.</p>
         <div style={{height:"3vh"}}></div>
         <h1>Contacts</h1>
         <a href="https://github.com/williamzchu" style={{color: "gray"}}>Github</a>
         <p>Email: williamzchu@gmail.com</p>
-        <p>If there is no reply after two days, please follow up! Sometimes we forget emails are stacks where things are never popped, especially for me!</p>
+        <p>If there is no reply after two days, please follow up! Sometimes we forget emails are stacks that are never cleared, especially for me!</p>
 
     </>
 }
