@@ -9,7 +9,7 @@ export default function About(){
         <div style={{height:"2vh"}}></div>
         <p>Anyways, this "about" page should have at least a little about the person behind it. </p>
         <p>I go by Will. I have always liked code that is visual. I remember when I first touched a script in Roblox studio, and had zero understanding whatsoever, and led me to avoid code like the plague. Yet it left me with an impression, that everything I saw in my computer, someone made, and that I could make too. Games and software weren't just techologies that I could utilize, but almost like pieces of art that had logic behind them, logic that was practical to admire, yet abusable to use.</p>
-        <p>So to end my rant and spiel, I am now a humble dev. Also with some additional expertise in visual computing, machine learning, and math. My interests lie in the intersections between data, visuals, and statistics, afterall: what is cooler than computing something you can use or see!</p>
+        <p>So to end my rant, I just like seeing cool things, along with some additional touches in visual computing, machine learning, and math. My interests lie in the intersections between data, visuals, and statistics, afterall: what is cooler than computing something you can use or see!</p>
         <div style={{height:"2vh"}}></div>
         <p>If you read through my sarcasm, congrats! Here is of my 21 year old dog!</p>
         <img src="creamy2.png"></img>
