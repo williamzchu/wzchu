@@ -2,7 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Experience from './Experience.tsx'
 import './index.css'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { Outlet, RouterProvider, createBrowserRouter, useOutlet } from 'react-router-dom'
+import notesPages from './notes/notesPages.tsx'
+import Notes from './Notes.tsx'
+import About from './About.tsx'
+import Raytracing from './notes/raytracing/index.tsx'
+import { buttons } from './notes/notesPages.tsx'
+
 
 const router = createBrowserRouter([
   {
@@ -11,12 +17,12 @@ const router = createBrowserRouter([
       children: [
         {
           path: "about",
-        },
-        {
-          path: "home",
+          element: <></>,
         },
         {
           path: "notes",
+          element: <><Notes/></>,
+          children: notesPages
         }
       ]
   },

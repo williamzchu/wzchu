@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-three/drei": "^9.93.0",
     "@react-three/fiber": "^8.15.14",
+    "framer-motion": "^11.11.8",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
     "r3f-perf": "^7.1.2",
