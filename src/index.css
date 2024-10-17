@@ -115,3 +115,15 @@ body,
     transition: 0.5s;
     
 }
+
+code{
+    background-color: rgb(35, 23, 65);
+    padding: 10px;
+    bottom: 10px;
+    border-color: white;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 4px;
+    width:70vh;
+    margin:0;
+}

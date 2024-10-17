@@ -1,6 +1,6 @@
 import { Canvas, useThree } from "@react-three/fiber"
 import Background from "./Background"
-import { cloneElement, useEffect, useRef, useState } from "react"
+import { cloneElement, SetStateAction, useEffect, useRef, useState } from "react"
 import { shapeContext } from "./ShapeContext"
 import { selectedContext } from "./SelectedContext"
 import { Link, Outlet, useLocation, useOutlet } from "react-router-dom"
@@ -9,7 +9,6 @@ import Notes from "./Notes"
 import { AnimatePresence } from "framer-motion"
 import { buttons } from "./notes/notesPages"
 
-const [noteSelection, selectNote] = useState("")
 
 export default function Experience(){
 
@@ -17,12 +16,16 @@ export default function Experience(){
     const [hoverTime, setHoverTime] = useState(0)
     const [repeater, setRepeater] = useState<NodeJS.Timeout>()
     const [selected, setSelected] = useState(0)
+    const [noteSelection, setNoteSelection] = useState("")
     const [contentY, setContentY] = useState(0)
     const location = useLocation()
     
     const navRef = useRef(null)
     const aboutRef = useRef(null)
     const notesRef = useRef(null)
+    const contentRef = useRef(null)
+
+    const noteContent = location.pathname.substring('/notes'.length).length != 0
     
     function hover(shape: number){
         const t = performance.now()
@@ -33,11 +36,17 @@ export default function Experience(){
         }
     }
 
-    if (navRef.current && aboutRef.current && notesRef.current){
+    function selectNote(s: SetStateAction<string>){
+        setNoteSelection(s)
+        setContentY(0)
+    }
+
+    if (navRef.current && aboutRef.current && contentRef.current){
         const top = 0
-        const textHeight = selected == 1? aboutRef.current.clientHeight : notesRef.current.clientHeight
+        const textHeight = selected == 1? aboutRef.current.clientHeight : contentRef.current.clientHeight
         const bottom = -textHeight + window.innerHeight
         document.onwheel = (event) => {setContentY(Math.min(top,Math.max(bottom, contentY - event.deltaY)))}
+        //console.log("height" + contentRef.current.clientHeight)
     }
     //let notes = selected == 2 //&& location.pathname.substring("/notes/".length).length == 0
     useEffect(
@@ -51,7 +60,9 @@ export default function Experience(){
             }
             else { //notes page
                 setSelected(2)
-                //console.log(notePage.length)
+                if (noteContent){
+                    selectNote(location.pathname)
+                }
             }
             //console.log(location)
         }, [location]
@@ -85,31 +96,32 @@ export default function Experience(){
 
     let notes_l = 0
     let content_l = -100
-    if (selected == 2 && location.pathname.substring('/notes'.length).length != 0){
-        notes_l = 25
+
+    if (selected == 2 && noteContent){
         content_l = 0
+        notes_l = 25
     }
-    //console.log(location.pathname.substring('/notes'.length))
+    //console.log(noteSelection)
 
     return <>
         <selectedContext.Provider value={selected}>
             <shapeContext.Provider value={shape}>
                 <Canvas style={{transition: '2s', left: l + notes_l + "vw"}}>
-                    <Background/>z
+                    <Background/>
                 </Canvas>
-                <div className="leftblur" style={{left: (l - 25)*4+ "vw"}}/>
+                <div className="leftblur" style={{left: (l - 25)*4+ notes_l + "vw"}}/>
                 <div ref={aboutRef} className="content" style={{top: contentY, left: (selected == 1?0: -100) +  "vw"}}>
                     <div className="content-container">
                         <About/>
                     </div>
                 </div>
-                <div ref={notesRef} className="content" style={{top: contentY, left: (selected == 2?0 + notes_l: -100) +  "vw"}}>
+                <div ref={notesRef} className="content" style={{top: contentY, left: (selected == 2 && !noteContent?0 : -100 ) +  "vw"}}>
                     <div className="content-container">
-                        <div>
-                            {buttons}
+                        <div className="content">
+                            {buttons(selectNote)}
                         </div>
-                        <div className="content" style={{left: content_l +  "vw"}}>
-                            <Notes page={location.pathname}/>
+                        <div ref={contentRef} className="content" style={{width: 80 + "vw", left: content_l +  "vw", marginTop: 0, paddingBottom: "10%"}}>
+                            <Notes page={noteSelection} handler={selectNote}/>
                         </div>
                     </div>
                 </div>

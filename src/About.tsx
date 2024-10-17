@@ -16,7 +16,7 @@ export default function About(){
         <h1>Contacts</h1>
         <a href="https://github.com/williamzchu" style={{color: "gray"}}>Github</a>
         <p>Email: williamzchu@gmail.com</p>
-        <p>If there is no reply after two days, please follow up! Sometimes we forget emails are stacks that are never cleared, especially for me!</p>
+        <p>If there is no reply after two days, please follow up! We all miss things in the stack, especially for me!</p>
 
     </>
 }
