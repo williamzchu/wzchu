@@ -15,7 +15,7 @@ import Digitals from "./digitals";
 import Raytracing from "./raytracing";
 import RaytracingBasics from "./raytracing/basics";
 import { ReactElement, JSXElementConstructor, ReactNode, useState } from "react";
-import RaytracingNiches from "./raytracing/niches";
+import RaytracingIntersections from "./raytracing/intersections"
 import Topology from "./topology";
 
 const notesPages: routerType[] = [
@@ -38,19 +38,21 @@ const notesPages: routerType[] = [
         head: false,
         category: "raytracing",
 
-        next: "/notes/raytracing/niches",
+        next: "/notes/raytracing/intersections",
     },
     {
         prev: "/notes/raytracing/basics",
 
-        path: "/notes/raytracing/niches",
-        element: <RaytracingNiches/>,
+        path: "/notes/raytracing/intersections",
+        element: <RaytracingIntersections/>,
         head: false,
         category: "raytracing",
 
         next: null,
     },
-    {   prev: null,
+
+    {   
+        prev: null,
 
         path: "/notes/digitals",
         element: <Digitals/>,
@@ -59,6 +61,7 @@ const notesPages: routerType[] = [
 
         next: null,
     },
+
     {   
         prev: null,
 
@@ -84,7 +87,7 @@ function noteButton(header, subheaders, handler){
     if (subheaders){
         for (let i = 0; i < subheaders.length; i++){
             subHeaderButtons.push(
-                <div key={i} style={{marginTop: expanded? undefined : -2 + "vh", transition: "0.5s", opacity: expanded? 1 : 0}}>
+                <div key={i} style={{marginTop: expanded? "0" : "-3.3%", transition: "0.5s", opacity: expanded? 1 : 0}}>
                     {subheaders[i]}
                 </div>
             )
@@ -93,7 +96,9 @@ function noteButton(header, subheaders, handler){
 
     return (<div key={header.path} style={{marginTop: "5%", padding: 0, width: "100%"}} onMouseEnter={() => setExpanded(true)} onMouseLeave={() => setExpanded(false)}>
         {headerButton}
-        {subHeaderButtons}
+        <div>
+            {subHeaderButtons}
+        </div>
         </div>)
 }
 

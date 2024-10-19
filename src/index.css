@@ -116,14 +116,30 @@ body,
     
 }
 
-code{
+.block{
     background-color: rgb(35, 23, 65);
     padding: 10px;
     bottom: 10px;
-    border-color: white;
-    border-width: 2px;
+    margin:0;
+    width: 100%;
+    display: inline-block;
+    overflow-x: auto;
+    width: 80vw;
+
+    border-color: darkslategray;
     border-style: solid;
     border-radius: 4px;
-    width:70vh;
-    margin:0;
+}
+
+SyntaxHighlighter{
+    border-color: darkslategray;
+    border-style: solid;
+    border-radius: 4px;
+}
+
+img{
+    background-color: rgb(6, 27, 66);
+    border-color: darkslategray;
+    border-style: solid;
+    border-radius: 4px;
 }

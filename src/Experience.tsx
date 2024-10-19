@@ -99,7 +99,7 @@ export default function Experience(){
 
     if (selected == 2 && noteContent){
         content_l = 0
-        notes_l = 25
+        notes_l = 20
     }
     //console.log(noteSelection)
 
@@ -110,12 +110,12 @@ export default function Experience(){
                     <Background/>
                 </Canvas>
                 <div className="leftblur" style={{left: (l - 25)*4+ notes_l + "vw"}}/>
-                <div ref={aboutRef} className="content" style={{top: contentY, left: (selected == 1?0: -100) +  "vw"}}>
+                <div ref={aboutRef} className="content" style={{top: contentY, left: (selected == 1?0: -100) +  "vw", opacity: selected == 1? 1: 0, transition: "0.5s"}}>
                     <div className="content-container">
                         <About/>
                     </div>
                 </div>
-                <div ref={notesRef} className="content" style={{top: contentY, left: (selected == 2 && !noteContent?0 : -100 ) +  "vw"}}>
+                <div ref={notesRef} className="content" style={{top: contentY, left: (selected == 2 && !noteContent?0 : -100 ) +  "vw", opacity: selected == 2? 1: 0, transition: "0.5s"}}>
                     <div className="content-container">
                         <div className="content">
                             {buttons(selectNote)}
