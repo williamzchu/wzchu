@@ -16,6 +16,7 @@ import Raytracing from "./raytracing";
 import RaytracingBasics from "./raytracing/basics";
 import { ReactElement, JSXElementConstructor, ReactNode, useState } from "react";
 import RaytracingIntersections from "./raytracing/intersections"
+import RaytracingUnitVectors from "./raytracing/unitvectors"
 import Topology from "./topology";
 
 const notesPages: routerType[] = [
@@ -45,6 +46,17 @@ const notesPages: routerType[] = [
 
         path: "/notes/raytracing/intersections",
         element: <RaytracingIntersections/>,
+        head: false,
+        category: "raytracing",
+
+        next: "/notes/raytracing/unitvectors",
+    },
+
+    {
+        prev: "/notes/raytracing/intersections",
+
+        path: "/notes/raytracing/unitvectors",
+        element: <RaytracingUnitVectors/>,
         head: false,
         category: "raytracing",
 

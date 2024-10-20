@@ -1,7 +1,5 @@
 import Code from "../../Code"
 import camera from "./pinhole-camera.png"
-import { InlineMath, BlockMath } from 'react-katex';
-import 'katex/dist/katex.min.css';
 import { MathJax, MathJaxContext } from "better-react-mathjax";
 
 const sendrays = `
@@ -34,7 +32,17 @@ In fact, the easiest way to think of one is as a pinhole camera.
 As a result, we can simply just cast rays from a focal point towards our models, with pixel plane in between to represent our screen, and that will have the same intrinsic parameters as our camera.
 </p>
 
-<p>This allows us to cast rays by representing each ray as a vector, which we define as the difference between the pixel on our screen and the camera origin.
+<p>This allows us to easily find the direction of the ray, which we define as the difference between the pixel on our screen and the camera origin.
+</p>
+
+<p>We also need to define the origin of the ray, which can simply be another vector.
+Therefore in the typical 3D world, we could represent rays as simply a two tuple of vectors with dimension 3.
+We have one vector represent the center <MathJax style={{display:"inline"}}>{"\\(    Q   \\)"}</MathJax>, while the other vector represents the direction, <MathJax style={{display:"inline"}}>{"\\(    \\vec{d}   \\)"}
+Commonly, we parameterize vectors with another variable <MathJax style={{display:"inline"}}>{"\\(    t   \\)"}</MathJax> as it makes most calculations much more intuitive.
+</MathJax>.
+</p>
+<p>
+Thus, we represent a ray as a function of time, where <MathJax style={{display:"inline"}}>{"\\(    R(t) = Q + t \\vec{d}  \\)"}</MathJax>.
 </p>
 
 <h3>Sending rays</h3>
