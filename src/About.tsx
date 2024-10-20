@@ -1,3 +1,5 @@
+import creamy from "./creamy2.png"
+
 export default function About(){
     return <>
         <h1>Welcome! </h1>
@@ -11,7 +13,7 @@ export default function About(){
         <p>I go by Will. I just like seeing cool things, along with some additional touches in visual computing, machine learning, and math. My interests lie in the intersections between data, visuals, and statistics, afterall: what is cooler than computing something you can use or see!</p>
         <div style={{height:"2vh"}}></div>
         <p>Here is my 22 year old dog representing this page!</p>
-        <img src="creamy2.png"></img>
+        <img src={creamy}></img>
         <div style={{height:"3vh"}}></div>
         <h1>Contacts</h1>
         <a href="https://github.com/williamzchu" style={{color: "gray"}}>Github</a>
