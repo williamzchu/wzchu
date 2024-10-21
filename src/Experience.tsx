@@ -49,14 +49,14 @@ export default function Experience(){
         //console.log("height" + contentRef.current.clientHeight)
     }
     //let notes = selected == 2 //&& location.pathname.substring("/notes/".length).length == 0
-    console.log(location.pathname)
+    //console.log(location.pathname)
     useEffect(
         () => {
-            console.log("setting: " + location.pathname)
+            //console.log("setting: " + location.pathname)
             if (location.pathname == "/"){
                 setSelected(0)
             }
-            else if (location.pathname == "/about"){
+            else if (location.pathname.includes("/about")){
                 setSelected(1)
             }
             else { //notes page
@@ -102,7 +102,7 @@ export default function Experience(){
         content_l = 0
         notes_l = 20
     }
-    console.log(noteSelection)
+    //console.log(noteSelection)
 
     return <>
         <selectedContext.Provider value={selected}>

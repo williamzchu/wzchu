@@ -8,9 +8,9 @@ function capitalizeFirstLetter(string) {
 export default function Notes({page, handler}:{page:string, handler:any}){
     if (page != "/notes" && page){
         const p = noteMap.get(page);
-        console.log(p)
+        //console.log(p)
         
-        if (p && p.content){
+        if (p){
                 return (<div style={{padding: "10%"}}>
                 <h1>{ capitalizeFirstLetter(p.category)}</h1>
                 <h2>
@@ -39,7 +39,7 @@ export default function Notes({page, handler}:{page:string, handler:any}){
         }
         else{
             return (
-                <div>Please go back to home</div>
+                <div>Page missing or under construction. Please go back to home.</div>
             )
         }
     }
