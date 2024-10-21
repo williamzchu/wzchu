@@ -49,9 +49,10 @@ export default function Experience(){
         //console.log("height" + contentRef.current.clientHeight)
     }
     //let notes = selected == 2 //&& location.pathname.substring("/notes/".length).length == 0
+    console.log(location.pathname)
     useEffect(
         () => {
-
+            console.log("setting: " + location.pathname)
             if (location.pathname == "/"){
                 setSelected(0)
             }
