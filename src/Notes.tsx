@@ -8,33 +8,39 @@ function capitalizeFirstLetter(string) {
 export default function Notes({page, handler}:{page:string, handler:any}){
     if (page != "/notes" && page){
         const p = noteMap.get(page);
-        //console.log(p.element)
+        console.log(p)
         
-
-        return <div style={{padding: "10%"}}>
-            <h1>{ capitalizeFirstLetter(p.category)}</h1>
-            <h2>
-                {!p.head? capitalizeFirstLetter(p.path.substring(("/notes" + p.category).length + 2)): null}
-            </h2>
-            <div>
-                {p.element}
-            </div>
-            <div style={{display: "flex", flexWrap: "wrap", marginTop: "10%"}}>
-                {p.prev != null?         
-                <><p>Previous:</p>
-                <Link className="nav" to={p.prev} onClick={() => handler(p.prev)} style={{padding: "5px", fontSize: "large"}}>
-                    {p.prev.substring("/notes/".length)}
-                </Link></>: 
-                null}
-            </div>
-            <div style={{display: "flex", flexWrap: "wrap"}}>
-                {p.next != null?         
-                <><p>Next:</p>
-                <Link className="nav" to={p.next} onClick={() => handler(p.next)} style={{padding: "5px", fontSize: "large"}}>
-                    {p.next.substring("/notes/".length)}
-                </Link></>: 
-                null}
-            </div>
-        </div>
+        if (p.content){
+                return (<div style={{padding: "10%"}}>
+                <h1>{ capitalizeFirstLetter(p.category)}</h1>
+                <h2>
+                    {!p.head? capitalizeFirstLetter(p.path.substring(("/notes" + p.category).length + 2)): null}
+                </h2>
+                <div>
+                    {p.element}
+                </div>
+                <div style={{display: "flex", flexWrap: "wrap", marginTop: "10%"}}>
+                    {p.prev != null?         
+                    <><p>Previous:</p>
+                    <Link className="nav" to={p.prev} onClick={() => handler(p.prev)} style={{padding: "5px", fontSize: "large"}}>
+                        {p.prev.substring("/notes/".length)}
+                    </Link></>: 
+                    null}
+                </div>
+                <div style={{display: "flex", flexWrap: "wrap"}}>
+                    {p.next != null?         
+                    <><p>Next:</p>
+                    <Link className="nav" to={p.next} onClick={() => handler(p.next)} style={{padding: "5px", fontSize: "large"}}>
+                        {p.next.substring("/notes/".length)}
+                    </Link></>: 
+                    null}
+                </div>
+            </div> )
+        }
+        else{
+            return (
+                <div>Please go back to home</div>
+            )
+        }
     }
 }
