@@ -10,7 +10,7 @@ export default function Notes({page, handler}:{page:string, handler:any}){
         const p = noteMap.get(page);
         console.log(p)
         
-        if (p.content){
+        if (p && p.content){
                 return (<div style={{padding: "10%"}}>
                 <h1>{ capitalizeFirstLetter(p.category)}</h1>
                 <h2>

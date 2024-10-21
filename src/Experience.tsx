@@ -101,7 +101,7 @@ export default function Experience(){
         content_l = 0
         notes_l = 20
     }
-    //console.log(noteSelection)
+    console.log(noteSelection)
 
     return <>
         <selectedContext.Provider value={selected}>
