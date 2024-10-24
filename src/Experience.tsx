@@ -46,7 +46,7 @@ export default function Experience(){
         const textHeight = selected == 1? aboutRef.current.clientHeight : contentRef.current.clientHeight
         const bottom = -textHeight + window.innerHeight
         document.onwheel = (event) => {setContentY(Math.min(top,Math.max(bottom, contentY - event.deltaY)))}
-        //console.log("height" + contentRef.current.clientHeight)
+        //console.log(selected, "height" + textHeight)
     }
     //let notes = selected == 2 //&& location.pathname.substring("/notes/".length).length == 0
     //console.log(location.pathname)

@@ -14,7 +14,7 @@ export default function Notes({page, handler}:{page:string, handler:any}){
                 return (<div style={{padding: "10%"}}>
                 <h1>{ capitalizeFirstLetter(p.category)}</h1>
                 <h2>
-                    {!p.head? capitalizeFirstLetter(p.path.substring(("/notes" + p.category).length + 2)): null}
+                    {!p.head? p.title? p.title :  capitalizeFirstLetter(p.path.substring(("/notes" + p.category).length + 2)): null}
                 </h2>
                 <div>
                     {p.element}

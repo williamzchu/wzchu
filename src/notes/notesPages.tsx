@@ -5,6 +5,7 @@ interface routerType {
     category: string;
     next: string | null;
     prev: string | null;
+    title: string | null;
 }
 
 
@@ -16,8 +17,10 @@ import Raytracing from "./raytracing";
 import RaytracingBasics from "./raytracing/basics";
 import { ReactElement, JSXElementConstructor, ReactNode, useState } from "react";
 import RaytracingIntersections from "./raytracing/intersections"
-import RaytracingUnitVectors from "./raytracing/unitvectors"
 import Topology from "./topology";
+import Algorithms from "./algorithms"
+import AlgorithmsVoronoi from "./algorithms/voronoi";
+import AlgorithmsConvexHull from "./algorithms/convexhull"
 
 const notesPages: routerType[] = [
 
@@ -28,6 +31,7 @@ const notesPages: routerType[] = [
         element: <Raytracing/>,
         head: true,
         category: "raytracing",
+        title: null,
 
         next: "/notes/raytracing/basics",
     },
@@ -38,6 +42,7 @@ const notesPages: routerType[] = [
         element: <RaytracingBasics/>,
         head: false,
         category: "raytracing",
+        title: null,
 
         next: "/notes/raytracing/intersections",
     },
@@ -48,17 +53,43 @@ const notesPages: routerType[] = [
         element: <RaytracingIntersections/>,
         head: false,
         category: "raytracing",
+        title: null,
 
         next: "/notes/raytracing/unitvectors",
     },
 
     {
-        prev: "/notes/raytracing/intersections",
+        prev: null,
 
-        path: "/notes/raytracing/unitvectors",
-        element: <RaytracingUnitVectors/>,
+        path: "/notes/algorithms",
+        element: <Algorithms/>,
+        head: true,
+        category: "algorithms",
+        title: null,
+
+        next: "/notes/algorithms/convexhull",
+    },
+
+    {
+        prev: null,
+
+        path: "/notes/algorithms/convexhull",
+        element: <AlgorithmsConvexHull/>,
         head: false,
-        category: "raytracing",
+        category: "algorithms",
+        title: "Convex Hull",
+
+        next: "/notes/algorithms/voronoi",
+    },
+
+    {
+        prev: "/notes/algorithms/convexhull",
+
+        path: "/notes/algorithms/voronoi",
+        element: <AlgorithmsVoronoi/>,
+        head: false,
+        category: "algorithms",
+        title: null,
 
         next: null,
     },
@@ -70,6 +101,7 @@ const notesPages: routerType[] = [
         element: <Digitals/>,
         head: true,
         category: "digitals",
+        title: null,
 
         next: null,
     },
@@ -81,6 +113,7 @@ const notesPages: routerType[] = [
         element: <Topology/>,
         head: true,
         category: "topology",
+        title: null,
 
         next: null,
     },
@@ -125,7 +158,7 @@ function buttons(handler: (arg0: string) => void){
             }
             subheaders.get(page.category).push(
                 <Link className="nav" to={page.path} onClick={() => handler(page.path)}>
-                    {page.path.substring(("/notes/" + page.category).length + 1)}
+                    {page.title? page.title : page.path.substring(("/notes/" + page.category).length + 1)}
                 </Link>
             )
         }
