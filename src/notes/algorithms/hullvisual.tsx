@@ -1,6 +1,6 @@
 import { Environment, Lightformer, Line, OrbitControls, OrthographicCamera } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { createContext, ReactElement, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { createContext, forwardRef, ReactElement, useCallback, useContext, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 const moveThreshold = 0.01
@@ -85,7 +85,7 @@ function Point(props){
     )
 }
 
-export default function HullVisual(){
+const HullVisual = forwardRef((props, ref) => {
     
     //const {mouse} = useThree()
     const {pointer, viewport, camera} = useThree()
@@ -153,4 +153,6 @@ export default function HullVisual(){
             />
         </>
     )
-}
+})
+
+export default HullVisual
