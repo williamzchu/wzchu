@@ -106,17 +106,6 @@ const notesPages: routerType[] = [
         next: null,
     },
 
-    {   
-        prev: null,
-
-        path: "/notes/topology",
-        element: <Topology/>,
-        head: true,
-        category: "topology",
-        title: null,
-
-        next: null,
-    },
 ]
 
 function noteButton(header, subheaders, handler){

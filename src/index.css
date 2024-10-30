@@ -143,3 +143,14 @@ img{
     border-style: solid;
     border-radius: 4px;
 }
+
+button{
+    background-color: transparent;
+    color: white;
+    font-family: "Zekton";
+    border-style: none;
+}
+button[disabled]{
+    color: #666666;
+    border-style: none;
+  }
