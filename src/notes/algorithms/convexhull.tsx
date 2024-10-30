@@ -66,8 +66,8 @@ Perhaps one simple yet effective one is known as "Graham's Algorithm."
     </Canvas>
 </div>
 
-<p>
-In this demo, add points when "viewing hull" by left clicking empty space. Click the point to remove it. Points are also draggable when "viewing hull." Move the entire scene around by right click dragging. Steps can be seen by "viewing steps."
+<p style={{color: "gray"}}>
+    In this demo, add points when "viewing hull" by left clicking empty space. Click the point to remove it. Points are also draggable when "viewing hull." Move the entire scene around by right click dragging. Steps can be seen by "viewing steps."
 </p>
 
 <p>
