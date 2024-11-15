@@ -67,7 +67,7 @@ Perhaps one simple yet effective one is known as "Graham's Algorithm."
 </div>
 
 <p style={{color: "gray"}}>
-    In this demo, add points when "viewing hull" by left clicking empty space. Click the point to remove it. Points are also draggable when "viewing hull." Move the entire scene around by right click dragging. Steps can be seen by "viewing steps."
+    In this demo, add points when "viewing hull" by left clicking empty space. Click the point to remove it. Points are also draggable when "viewing hull." Move the entire scene around by right click dragging. Steps can be seen by "viewing steps." Click in and scroll to zoom. 
 </p>
 
 <p>
@@ -82,9 +82,11 @@ We first start at the bottom most point and left most, which is relatively simpl
 <Code>
     {minCode}
 </Code>
+
 <p>
 Now, we want to be able to go through the points in a clockwise manner, essentially needing to sort the points in some manner. In the case of the Graham scan, we sort according to the angle with our bottom point, or essentially the angle given by the segment from the bottom point with the x-axis. This resulting in being able to process points in a counter-clockwise manner.
 However, we actually won't need to use trigonometric functions, and can simply use the dot product. 
+</p>
 
 <p>
 Let <Latex>b</Latex> be the bottom point, and <Latex>x</Latex> be the point we are calculating the angle for, then <Latex>{"\\vec{v} = \\langle x_x-b_x, x_y - b_y \\rangle"}</Latex> is the line from <Latex>b</Latex> to <Latex>x</Latex>.
@@ -97,7 +99,9 @@ Let <Latex>b</Latex> be the bottom point, and <Latex>x</Latex> be the point we a
 <Code>
 {sortCode}
 </Code>
-<p>However, we still note that we need to take a square root which could be expensive. There is similar version of the Graham scan where we instead sort by x-coordinate instead (avoiding the square root), and then perform two computations of the hull, one upper and one lower.</p>
+<p>However, we still note that we need to take a square root which could be expensive. There is similar version of the Graham scan where we instead sort by x-coordinate instead (avoiding the square root), and then perform two computations of the hull, one upper and one lower.
+
+</p>
 
 <p>We now need to compute/detect when points make a "counter-clockwise turn." Again, there is no need for trigonometric functions, and this check can be taken from the cross product by simply checking if the z-coordinate is positive. 
     Since we have three points to check the angle, <Latex>a, b, c</Latex>, where <Latex>{"\\vec{v_1} = b - a = \\langle b_x - a_x, b_y - a_y \\rangle"}</Latex>, and <Latex>{"\\vec{v_2} = c - a = \\langle c_x - a_x, c_y - a_y \\rangle"}</Latex>. 
@@ -114,7 +118,8 @@ Therefore, the the z-coordinate is <Latex>{"\\vec{v_1} \\times \\vec{v_2} = (b_x
 <Code>
     {convex}
 </Code>
-<p>We only check the cross product if we already have 2 points on the stack, hence only checking when attempting to add the third point.</p>
+<p>We only check the cross product if we already have 2 points on the stack, hence only checking when attempting to add the third point.
+
 </p>
 
 <p>Due to the sort, the time complexity becomes <Latex>{"n \\log n"}</Latex>. However, if sorts are already done, such as by x-coordinate or by angle relative to the bottom point, we can calculate the hull in linear time.</p>

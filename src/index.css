@@ -11,16 +11,14 @@ html,
 body,
 #root{
     background-color: black;
-    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100%;
+    width: 95vw;
+    height: 95vh;
 }
 
 .background{
     background-color: black;
-    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -87,13 +85,13 @@ body,
 
 
 .content{
-    position: fixed;
-    width: 52vw;
+    position: relative;
+    width: 70%;
     color: white;
     font-family: "Zekton";
 
     transition: top 1s, left 1s;
-    min-height: 90vh;
+    z-index: 10;
 
 }
 
@@ -107,7 +105,6 @@ body,
     width: 60vw;
     height:100vh;
     color: white;
-    font-family: "Aquire";
     top: 0px;
 
     background-image: linear-gradient(to right, rgba(0,0,0,1),90%, rgba(0,0,0,0));

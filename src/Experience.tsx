@@ -39,13 +39,14 @@ export default function Experience(){
     function selectNote(s: SetStateAction<string>){
         setNoteSelection(s)
         setContentY(0)
+        window.scrollTo(0,0)
     }
 
     if (navRef.current && aboutRef.current && contentRef.current){
         const top = 0
         const textHeight = selected == 1? aboutRef.current.clientHeight : contentRef.current.clientHeight
         const bottom = -textHeight + window.innerHeight
-        document.onwheel = (event) => {setContentY(Math.min(top,Math.max(bottom, contentY - event.deltaY)))}
+        //document.onwheel = (event) => {setContentY(Math.min(top,Math.max(bottom, contentY - event.deltaY)))}
         //console.log(selected, "height" + textHeight)
     }
     //let notes = selected == 2 //&& location.pathname.substring("/notes/".length).length == 0
@@ -90,9 +91,9 @@ export default function Experience(){
     if (selected != 0){
         l = 25
     }
-    let w = 100
+    let w = 90
     if (selected){
-        w = 50
+        w = 45
     }
 
     let notes_l = 0
@@ -103,30 +104,30 @@ export default function Experience(){
         notes_l = 20
     }
     //console.log(noteSelection)
-
     return <>
         <selectedContext.Provider value={selected}>
             <shapeContext.Provider value={shape}>
-                <Canvas style={{transition: '2s', left: l + notes_l + "vw"}}>
+                <Canvas style={{position: "fixed", transition: '2s', left: l + notes_l + "vw", zIndex: 0}}>
                     <Background/>
                 </Canvas>
-                <div className="leftblur" style={{left: (l - 25)*4+ notes_l + "vw"}}/>
-                <div ref={aboutRef} className="content" style={{top: contentY, left: (selected == 1?0: -100) +  "vw", opacity: selected == 1? 1: 0, transition: "0.5s"}}>
+                <div className="leftblur" style={{position: "fixed", left: (selected != 0? 0: -100) + "vw", zIndex: 1}}/>
+                
+                <div ref={aboutRef} className="content" style={{height:(selected==1? 100: 0) + "%", left: (selected == 1?0: -100) +  "vw", opacity: selected == 1? 1: 0, transition: "0.5s", overflow: (selected==1?"visible": "clip")}}>
                     <div className="content-container">
                         <About/>
                     </div>
                 </div>
-                <div ref={notesRef} className="content" style={{top: contentY, left: (selected == 2 && !noteContent?0 : -100 ) +  "vw", opacity: selected == 2? 1: 0, transition: "0.5s"}}>
+                <div className="content" style={{position: "fixed",  left: (selected == 2 && !noteContent? 0: -100) + "%", top:"10vh", zIndex: 11}}>
+                    {buttons(selectNote)}
+                </div>
+                <div ref={notesRef} className="content" style={{height:(selected==2? 100: 0) + "%", left: (selected == 2 && noteContent?-10 : -100 ) +  "vw", opacity: selected == 2? 1: 0, transition: "0.5s", overflow: (selected==2 && noteContent?"visible": "clip")}}>
                     <div className="content-container">
-                        <div className="content">
-                            {buttons(selectNote)}
-                        </div>
-                        <div ref={contentRef} className="content" style={{width: 80 + "vw", left: content_l +  "vw", marginTop: 0, paddingBottom: "10%"}}>
+                        <div ref={contentRef} className="content" style={{width: 80 + "vw", marginTop: 0, paddingBottom: "10%"}}>
                             <Notes page={noteSelection} handler={selectNote}/>
                         </div>
                     </div>
                 </div>
-                <div style={{top: selected != 0? '2vh': '90vh', width: w + "vw", left: 100 - w + "vw"}} className="navbar" ref={navRef}>
+                <div style={{top: selected != 0? '2vh': '90vh', width: (selected==0?90:45) + "vw", left: (selected==0?5:50) + "vw", zIndex: 10}} className="navbar" ref={navRef}>
                     {navbar}
                 </div>
             </shapeContext.Provider>

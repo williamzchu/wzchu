@@ -19,7 +19,7 @@ import { ReactElement, JSXElementConstructor, ReactNode, useState } from "react"
 import RaytracingIntersections from "./raytracing/intersections"
 import Topology from "./topology";
 import Algorithms from "./algorithms"
-import AlgorithmsVoronoi from "./algorithms/voronoi";
+import AlgorithmsDelaunay from "./algorithms/delaunay";
 import AlgorithmsConvexHull from "./algorithms/convexhull"
 
 const notesPages: routerType[] = [
@@ -79,14 +79,14 @@ const notesPages: routerType[] = [
         category: "algorithms",
         title: "Convex Hull",
 
-        next: "/notes/algorithms/voronoi",
+        next: "/notes/algorithms/delaunay",
     },
 
     {
         prev: "/notes/algorithms/convexhull",
 
-        path: "/notes/algorithms/voronoi",
-        element: <AlgorithmsVoronoi/>,
+        path: "/notes/algorithms/delaunay",
+        element: <AlgorithmsDelaunay/>,
         head: false,
         category: "algorithms",
         title: null,

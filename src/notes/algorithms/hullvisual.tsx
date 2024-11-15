@@ -43,6 +43,14 @@ function Edge({vertices, initialState=true, history_key=-2}) {
             if (history_key == edgeEvent[0]){
                 setShown(edgeEvent[1])
             }
+            else{
+                if (shown){
+                    lineRef.current.morphTargetInfluences[0] = 0
+                }
+                else{
+                    lineRef.current.morphTargetInfluences[0] = 1
+                }
+            }
             //console.log(edgeEvent)
             if (edgeEvent[0] == -2 && history_key != -2){
                 setShown(false)
@@ -86,12 +94,12 @@ function Point(props){
     useFrame(
         ({pointer, camera}) => {
             if (selected && (Math.abs(mouseX - pointer.x) > moveThreshold || Math.abs(mouseY - pointer.y) > moveThreshold)){
-                const x = (pointer.x * viewport.width) / 2 + camera.position.x
-                const y = (pointer.y * viewport.height) / 2 + camera.position.y
+                const x = ((pointer.x * viewport.width)  / (camera.zoom/25) + camera.position.x)
+                const y = ((pointer.y * viewport.height) / (camera.zoom/25) + camera.position.y)
                 //console.log(pointer)
                 meshRef.current.position.set(x, y, 0)
-                //console.log(camera.position)
             }
+            //console.log(camera.scale)
         }
     )
 
@@ -106,9 +114,7 @@ function Point(props){
     function deselect(){
         setSelected(false)
         if (Math.abs(mouseX - pointer.x) > moveThreshold  || Math.abs(mouseY - pointer.y) > moveThreshold){
-            const x = (pointer.x * viewport.width) / 2 + camera.position.x
-            const y = (pointer.y * viewport.height) / 2 + camera.position.y
-            props.update(props.dkey, x,y)
+
         }
         else{
             props.remove(props.dkey)
@@ -192,6 +198,8 @@ const HullVisual = forwardRef((props, ref) => {
     const calculateHull = () => {
         const meshes = pointsRef.current.children
 
+
+
         let bottom = meshes[0]
         for (let i = 1; i < meshes.length; i++){
             const curr = meshes[i]
@@ -199,7 +207,9 @@ const HullVisual = forwardRef((props, ref) => {
                 bottom = curr
             }
         }
-        //console.log(bottom)
+        if (!bottom){
+            return []
+        }
         const meshes2 = meshes.filter(p => p !== bottom)
         meshes2.sort(function(a,b){
             const xa_i2 = (a.position.x - bottom.position.x) * (a.position.x - bottom.position.x)
@@ -212,6 +222,7 @@ const HullVisual = forwardRef((props, ref) => {
 
             return cos2b - cos2a
         })
+        //console.log(meshes2)
         //console.log(meshes2)
 
         const coords = [[bottom.position.x, bottom.position.y, bottom.dkey], ...meshes2.map((p) => [p.position.x, p.position.y, p.dkey])]
@@ -299,7 +310,7 @@ const HullVisual = forwardRef((props, ref) => {
                 const xrand = (Math.random() - 0.5)/2 * viewport.width
                 const yrand = (Math.random() - 0.5)/2 * viewport.height
 
-                initialPoints.push(<Point key={i} position={[xrand, yrand, 0]} dkey={i} remove={removePoint} update={updatePoint}/>)
+                initialPoints.push(<Point key={i} position={[xrand, yrand, 0]} dkey={i} remove={removePoint} update={null}/>)
             }
             setPoints(initialPoints)
             setLast(initialN + 1)
@@ -309,10 +320,9 @@ const HullVisual = forwardRef((props, ref) => {
 
 
     const removePoint = (key: string | null) => {setPoints(prev => prev.filter(p => p.key != key))}
-    const updatePoint = (key: any, x: any,y: any) => {setPointCoords(new Map(pointCoords).set(key, [x,y]))}
 
     function createPoint(position: number[]){
-        setPoints( prev => [...prev, <Point key={last} position={position} dkey={last} remove={removePoint} update={updatePoint}/>])
+        setPoints( prev => [...prev, <Point key={last} position={position} dkey={last} remove={removePoint} update={null}/>])
         setLast(last => last + 1)
     }
 
@@ -320,6 +330,7 @@ const HullVisual = forwardRef((props, ref) => {
         if (edgeStep == -2){
             drawHull()
         }
+        //console.log(camera.zoom)
     })
     
 
@@ -334,14 +345,14 @@ const HullVisual = forwardRef((props, ref) => {
                         {edges}
                     </group>
 
-                    <group ref={pointsRef} onPointerMissed={() => edgeStep == -2? createPoint([pointer.x * viewport.width/2 + camera.position.x, pointer.y * viewport.height/2 + camera.position.y, 0]) : null}>
+                    <group ref={pointsRef} onPointerMissed={() => edgeStep == -2? createPoint([pointer.x * viewport.width / (camera.zoom/25) + camera.position.x, pointer.y * viewport.height /(camera.zoom/25) + camera.position.y, 0]) : null}>
                         {points}
                     </group>
 
                     <group position={[0,0,-0.001]}>
                         {history}
                     </group>
-                    <OrbitControls enablePan={true} enableZoom={false} enableRotate={false}/>
+                    <OrbitControls enablePan={true} enableZoom={true} enableRotate={false}/>
                     <OrthographicCamera
                         makeDefault
                         zoom={50}
