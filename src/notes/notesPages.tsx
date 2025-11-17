@@ -30,6 +30,7 @@ import Swapchain from "./vulkan/swapchain";
 import Pipeline from "./vulkan/pipeline";
 import Drawing from "./vulkan/Drawing";
 import FramesInFlight from "./vulkan/framesinflight";
+import Resizing from "./vulkan/resizing";
 
 const notesPages: routerType[] = [
 
@@ -196,6 +197,17 @@ const notesPages: routerType[] = [
         head: false,
         category: "vulkan",
         title: "Frames in Flight",
+
+        next: "/notes/vulkan/resizing",
+    },
+    {   
+        prev: "/notes/vulkan/framesinflight",
+
+        path: "/notes/vulkan/resizing",
+        element: <Resizing/>,
+        head: false,
+        category: "vulkan",
+        title: "Resizing",
 
         next: null,
     },
