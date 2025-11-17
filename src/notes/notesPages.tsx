@@ -15,7 +15,7 @@ import Digitals from "./digitals";
 
 import Raytracing from "./raytracing";
 import RaytracingBasics from "./raytracing/basics";
-import { ReactElement, JSXElementConstructor, ReactNode, useState } from "react";
+import { useState } from "react";
 import RaytracingIntersections from "./raytracing/intersections"
 import Vulkan from "./vulkan";
 import Algorithms from "./algorithms"
@@ -24,9 +24,9 @@ import Setup from "./vulkan/setup";
 import Presentation from "./vulkan/presentation";
 import Swapchain from "./vulkan/swapchain";
 import Pipeline from "./vulkan/pipeline";
-import Drawing from "./vulkan/Drawing";
 import FramesInFlight from "./vulkan/framesinflight";
 import Resizing from "./vulkan/resizing";
+import Drawing from "./vulkan/drawing";
 
 const notesPages: routerType[] = [
 
@@ -87,18 +87,6 @@ const notesPages: routerType[] = [
 
         next: null,
     },
-
-    // {
-    //     prev: "/notes/algorithms/convexhull",
-
-    //     path: "/notes/algorithms/delaunay",
-    //     element: <AlgorithmsDelaunay/>,
-    //     head: false,
-    //     category: "algorithms",
-    //     title: null,
-
-    //     next: null,
-    // },
 
     {   
         prev: null,
@@ -210,7 +198,7 @@ const notesPages: routerType[] = [
 
 ]
 
-function noteButton(header, subheaders, handler){
+function noteButton(header: routerType, subheaders: string | any[], handler: { (arg0: string): void; (arg0: any): void; }){
     const [expanded, setExpanded] = useState(false)
 
     const headerButton = 
