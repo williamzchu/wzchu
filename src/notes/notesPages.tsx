@@ -18,9 +18,18 @@ import RaytracingBasics from "./raytracing/basics";
 import { ReactElement, JSXElementConstructor, ReactNode, useState } from "react";
 import RaytracingIntersections from "./raytracing/intersections"
 import Topology from "./topology";
+import Vulkan from "./vulkan";
 import Algorithms from "./algorithms"
 import AlgorithmsDelaunay from "./algorithms/delaunay";
 import AlgorithmsConvexHull from "./algorithms/convexhull"
+import GLFW from "./vulkan/setup";
+import Surface from "./vulkan/presentation";
+import Setup from "./vulkan/setup";
+import Presentation from "./vulkan/presentation";
+import Swapchain from "./vulkan/swapchain";
+import Pipeline from "./vulkan/pipeline";
+import Drawing from "./vulkan/Drawing";
+import FramesInFlight from "./vulkan/framesinflight";
 
 const notesPages: routerType[] = [
 
@@ -55,7 +64,7 @@ const notesPages: routerType[] = [
         category: "raytracing",
         title: null,
 
-        next: "/notes/raytracing/unitvectors",
+        next: null,
     },
 
     {
@@ -79,20 +88,20 @@ const notesPages: routerType[] = [
         category: "algorithms",
         title: "Convex Hull",
 
-        next: "/notes/algorithms/delaunay",
-    },
-
-    {
-        prev: "/notes/algorithms/convexhull",
-
-        path: "/notes/algorithms/delaunay",
-        element: <AlgorithmsDelaunay/>,
-        head: false,
-        category: "algorithms",
-        title: null,
-
         next: null,
     },
+
+    // {
+    //     prev: "/notes/algorithms/convexhull",
+
+    //     path: "/notes/algorithms/delaunay",
+    //     element: <AlgorithmsDelaunay/>,
+    //     head: false,
+    //     category: "algorithms",
+    //     title: null,
+
+    //     next: null,
+    // },
 
     {   
         prev: null,
@@ -102,6 +111,91 @@ const notesPages: routerType[] = [
         head: true,
         category: "digitals",
         title: null,
+
+        next: null,
+    },
+
+    {   
+        prev: null,
+
+        path: "/notes/vulkan",
+        element: <Vulkan/>,
+        head: true,
+        category: "vulkan",
+        title: null,
+
+        next: "/notes/vulkan/setup",
+    },
+
+        {   
+        prev: "/notes/vulkan",
+
+        path: "/notes/vulkan/setup",
+        element: <Setup/>,
+        head: false,
+        category: "vulkan",
+        title: "setup",
+
+        next: "/notes/vulkan/presentation",
+    },
+
+
+    {   
+        prev: "/notes/vulkan/setup",
+
+        path: "/notes/vulkan/presentation",
+        element: <Presentation/>,
+        head: false,
+        category: "vulkan",
+        title: "Presentation",
+
+        next: "/notes/vulkan/swapchain",
+    },
+
+    {   
+        prev: "/notes/vulkan/presentation",
+
+        path: "/notes/vulkan/swapchain",
+        element: <Swapchain/>,
+        head: false,
+        category: "vulkan",
+        title: "Swap Chain",
+
+        next: "/notes/vulkan/pipeline",
+    },
+
+    {   
+        prev: "/notes/vulkan/swapchain",
+
+        path: "/notes/vulkan/pipeline",
+        element: <Pipeline/>,
+        head: false,
+        category: "vulkan",
+        title: "Pipeline",
+
+        next: "/notes/vulkan/drawing",
+    },
+
+    {   
+        prev: "/notes/vulkan/pipeline",
+
+        path: "/notes/vulkan/drawing",
+        element: <Drawing/>,
+        head: false,
+        category: "vulkan",
+        title: "Drawing",
+
+        next: "/notes/vulkan/framesinflight",
+    },
+
+    {   
+        prev: "/notes/vulkan/drawing",
+
+        path: "/notes/vulkan/framesinflight",
+        element: <FramesInFlight/>,
+        head: false,
+        category: "vulkan",
+        title: "Frames in Flight",
 
         next: null,
     },

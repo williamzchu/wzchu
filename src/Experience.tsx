@@ -38,7 +38,7 @@ export default function Experience(){
 
     function selectNote(s: SetStateAction<string>){
         setNoteSelection(s)
-        setContentY(0)
+        //setContentY(0)
         window.scrollTo(0,0)
     }
 
