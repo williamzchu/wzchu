@@ -17,13 +17,9 @@ import Raytracing from "./raytracing";
 import RaytracingBasics from "./raytracing/basics";
 import { ReactElement, JSXElementConstructor, ReactNode, useState } from "react";
 import RaytracingIntersections from "./raytracing/intersections"
-import Topology from "./topology";
 import Vulkan from "./vulkan";
 import Algorithms from "./algorithms"
-import AlgorithmsDelaunay from "./algorithms/delaunay";
 import AlgorithmsConvexHull from "./algorithms/convexhull"
-import GLFW from "./vulkan/setup";
-import Surface from "./vulkan/presentation";
 import Setup from "./vulkan/setup";
 import Presentation from "./vulkan/presentation";
 import Swapchain from "./vulkan/swapchain";
