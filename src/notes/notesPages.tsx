@@ -27,6 +27,7 @@ import Pipeline from "./vulkan/pipeline";
 import FramesInFlight from "./vulkan/framesinflight";
 import Resizing from "./vulkan/resizing";
 import Drawing from "./vulkan/drawing";
+import Vertex from "./vulkan/vertex";
 
 const notesPages: routerType[] = [
 
@@ -192,6 +193,18 @@ const notesPages: routerType[] = [
         head: false,
         category: "vulkan",
         title: "Resizing",
+
+        next: "/notes/vulkan/vertex",
+    },
+
+    {   
+        prev: "/notes/vulkan/resizing",
+
+        path: "/notes/vulkan/vertex",
+        element: <Vertex/>,
+        head: false,
+        category: "vulkan",
+        title: "Vertex",
 
         next: null,
     },

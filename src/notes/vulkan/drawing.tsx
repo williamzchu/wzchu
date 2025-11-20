@@ -4,7 +4,7 @@ import CodeFunc from "../../CodeFunc";
 export default function Drawing(){
     return <div>
         Let's remind ourselves that we are doing dynamic rendering. In older versions of Vulkan, we would need to create framebuffers for our image views and a render pass. 
-        With dynamic rendering, we can now render directly to the image views. However, we will not need to specify the color, depth, and stencil attachments when we being rendering.
+        With dynamic rendering, we can now render directly to the image views. However, we will now need to specify the color, depth, and stencil attachments when we being rendering.
 
         <p>Now in order to draw, we need to issue commands. We have to record all the commands we want into command buffer objects, and submit them together.
             Therefore, we need a command buffer. In order to create a command buffer, we will first need to create a command pool that manages the memory for the buffers. 
