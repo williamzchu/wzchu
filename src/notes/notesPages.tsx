@@ -28,6 +28,7 @@ import FramesInFlight from "./vulkan/framesinflight";
 import Resizing from "./vulkan/resizing";
 import Drawing from "./vulkan/drawing";
 import Vertex from "./vulkan/vertex";
+import Descriptors from "./vulkan/descriptors";
 
 const notesPages: routerType[] = [
 
@@ -206,6 +207,18 @@ const notesPages: routerType[] = [
         category: "vulkan",
         title: "Vertex",
 
+        next: "/notes/vulkan/descriptor",
+    },
+
+    {   
+        prev: "/notes/vulkan/vertex",
+
+        path: "/notes/vulkan/descriptor",
+        element: <Descriptors/>,
+        head: false,
+        category: "vulkan",
+        title: "Descriptors",
+
         next: null,
     },
 
@@ -224,7 +237,7 @@ function noteButton(header: routerType, subheaders: string | any[], handler: { (
     if (subheaders){
         for (let i = 0; i < subheaders.length; i++){
             subHeaderButtons.push(
-                <div key={i} style={{marginTop: expanded? "0" : "-3.3%", transition: "0.5s", opacity: expanded? 1 : 0}}>
+                <div key={i} style={{marginTop: expanded? "0" : "-2.5%", transition: "0.5s", opacity: expanded? 1 : 0, position: "relative"}}>
                     {subheaders[i]}
                 </div>
             )
