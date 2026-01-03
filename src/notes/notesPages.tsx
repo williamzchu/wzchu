@@ -219,6 +219,18 @@ const notesPages: routerType[] = [
         category: "vulkan",
         title: "Descriptors",
 
+        next: "/notes/vulkan/texture",
+    },
+
+        {   
+        prev: "/notes/vulkan/descriptor",
+
+        path: "/notes/vulkan/texture",
+        element: <Descriptors/>,
+        head: false,
+        category: "vulkan",
+        title: "Textures",
+
         next: null,
     },
 
