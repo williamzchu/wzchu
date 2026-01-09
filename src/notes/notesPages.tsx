@@ -29,6 +29,8 @@ import Resizing from "./vulkan/resizing";
 import Drawing from "./vulkan/drawing";
 import Vertex from "./vulkan/vertex";
 import Descriptors from "./vulkan/descriptors";
+import Depth from "./vulkan/depth";
+import Textures from "./vulkan/textures";
 
 const notesPages: routerType[] = [
 
@@ -222,14 +224,26 @@ const notesPages: routerType[] = [
         next: "/notes/vulkan/texture",
     },
 
-        {   
+    {   
         prev: "/notes/vulkan/descriptor",
 
         path: "/notes/vulkan/texture",
-        element: <Descriptors/>,
+        element: <Textures/>,
         head: false,
         category: "vulkan",
         title: "Textures",
+
+        next: "/notes/vulkan/depth",
+    },
+
+    {   
+        prev: "/notes/vulkan/texture",
+
+        path: "/notes/vulkan/depth",
+        element: <Depth/>,
+        head: false,
+        category: "vulkan",
+        title: "Depth Buffer",
 
         next: null,
     },
